@@ -1,6 +1,6 @@
 package com.example.diciointerviewapp.di
 
-import com.example.diciointerviewapp.remote.UserApi
+import com.example.diciointerviewapp.data.remote.UserApi
 import com.example.diciointerviewapp.repository.UserRepository
 import com.example.diciointerviewapp.util.Constants.BASE_URL
 import dagger.Module

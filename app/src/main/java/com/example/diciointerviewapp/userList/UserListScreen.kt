@@ -2,14 +2,17 @@ package com.example.diciointerviewapp.userList
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Icon
@@ -21,6 +24,7 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -31,9 +35,12 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.diciointerviewapp.R
+import com.example.diciointerviewapp.data.remote.responses.User
 
 @Composable
 fun UserListScreen(
@@ -56,9 +63,8 @@ fun UserListScreen(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
-        ) {
+        ) {}
 
-        }
     }
 
         
@@ -104,5 +110,84 @@ fun SearchBar(
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)
             )
         }
+    }
+}
+
+
+@Composable
+fun UserList(
+    viewModel : UserListViewModel = hiltViewModel()
+
+) {
+    val userList by remember {
+        viewModel.userList
+    }
+    val isLoading by remember {
+        viewModel.isLoading
+    }
+
+        viewModel.getUsers()
+        LazyColumn(
+            modifier = Modifier.padding(6.dp)
+        ) {
+            items(userList.size) {
+                UserEntry(entry = userList[it] as User)
+            }
+        }
+
+}
+
+
+@Composable
+fun UserEntry(
+    entry: User,
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .padding(16.dp)
+    ) {
+        Text(
+            entry.nombre.replaceFirstChar {
+                it.uppercase()
+            },
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier
+                .padding(horizontal = 10.dp)
+        )
+        Text(
+            entry.apellidoPaterno.replaceFirstChar {
+                it.uppercase()
+            },
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier
+                .padding(horizontal = 10.dp)
+        )
+        Text(
+            entry.apellidoMaterno.replaceFirstChar {
+                it.uppercase()
+            },
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier
+                .padding(horizontal = 10.dp)
+        )
+        Text(
+            entry.edad as String,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier
+                .padding(horizontal = 10.dp)
+        )
+        Text(
+            entry.email,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier
+                .padding(horizontal = 10.dp)
+        )
+        Text(
+            entry.fechaNac,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier
+                .padding(horizontal = 10.dp)
+        )
     }
 }

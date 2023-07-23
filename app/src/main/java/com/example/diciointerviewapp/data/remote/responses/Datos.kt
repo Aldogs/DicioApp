@@ -1,4 +1,4 @@
-package com.example.diciointerviewapp.remote.responses
+package com.example.diciointerviewapp.data.remote.responses
 
 data class Datos(
     val calle: String,
