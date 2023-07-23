@@ -1,4 +1,4 @@
-package com.example.diciointerviewapp
+package com.example.diciointerviewapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,17 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHost
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.diciointerviewapp.home.HomeScreen
+import com.example.diciointerviewapp.presentation.home.HomeScreen
+import com.example.diciointerviewapp.presentation.registerUser.RegisterUserScreen
 import com.example.diciointerviewapp.ui.theme.DicioInterviewAppTheme
-import com.example.diciointerviewapp.userList.UserListScreen
+import com.example.diciointerviewapp.presentation.userList.UserListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +34,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("user_list_screen") {
                             UserListScreen(navController = navController)
+                        }
+                        composable("register_user_screen") {
+                            RegisterUserScreen(navController = navController)
                         }
                     }
                 }

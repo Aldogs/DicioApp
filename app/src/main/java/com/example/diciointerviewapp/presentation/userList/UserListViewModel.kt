@@ -1,4 +1,4 @@
-package com.example.diciointerviewapp.userList
+package com.example.diciointerviewapp.presentation.userList
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

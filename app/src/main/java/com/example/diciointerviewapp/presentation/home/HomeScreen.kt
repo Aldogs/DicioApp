@@ -1,4 +1,4 @@
-package com.example.diciointerviewapp.home
+package com.example.diciointerviewapp.presentation.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -44,7 +44,9 @@ fun HomeScreen(
                     .fillMaxWidth()
             )
             ElevatedButton(
-                onClick = { /*TODO*/ }
+                onClick = {
+                    navController.navigate("register_user_screen")
+                }
             ) {
                 Text(text = "Registrar usuario")
             }

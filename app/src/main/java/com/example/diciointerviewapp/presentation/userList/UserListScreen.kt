@@ -1,16 +1,10 @@
-package com.example.diciointerviewapp.userList
+package com.example.diciointerviewapp.presentation.userList
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
@@ -18,35 +12,29 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
-import androidx.compose.material3.ElevatedButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.diciointerviewapp.R
 import com.example.diciointerviewapp.data.remote.responses.User
 
 @Composable
 fun UserListScreen(
     navController: NavController
 ){
-    Column() {
+    Column {
         TopAppBar(
             title = { Text(text = "Lista de usuarios") },
             navigationIcon = {
@@ -64,12 +52,8 @@ fun UserListScreen(
                 .padding(16.dp)
                 .fillMaxWidth()
         ) {}
-
+        UserList()
     }
-
-        
-
-
 }
 
 @Composable
@@ -122,9 +106,6 @@ fun UserList(
     val userList by remember {
         viewModel.userList
     }
-    val isLoading by remember {
-        viewModel.isLoading
-    }
 
         viewModel.getUsers()
         LazyColumn(
@@ -172,7 +153,7 @@ fun UserEntry(
                 .padding(horizontal = 10.dp)
         )
         Text(
-            entry.edad as String,
+            entry.edad.toString(),
             fontWeight = FontWeight.Medium,
             modifier = Modifier
                 .padding(horizontal = 10.dp)
