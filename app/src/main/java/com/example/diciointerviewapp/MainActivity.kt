@@ -14,7 +14,9 @@ import androidx.navigation.NavHost
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.diciointerviewapp.home.HomeScreen
 import com.example.diciointerviewapp.ui.theme.DicioInterviewAppTheme
+import com.example.diciointerviewapp.userList.UserListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,13 +30,13 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "main_screen"
+                        startDestination = "home_screen"
                     ) {
-                        composable("main_screen") {
-
+                        composable("home_screen") {
+                            HomeScreen(navController = navController)
                         }
-                        composable("list_screen") {
-
+                        composable("user_list_screen") {
+                            UserListScreen(navController = navController)
                         }
                     }
                 }
