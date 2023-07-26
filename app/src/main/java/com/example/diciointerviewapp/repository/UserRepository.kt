@@ -20,6 +20,13 @@ class UserRepository @Inject constructor(
         }
         return Resource.Success(response)
     }
-
-    //TODO::Make function to send new user data
+    
+    suspend fun addNewUser(request: User): Resource<User> {
+        try {
+            api.addNewUser(XC_TOKEN, request)
+        } catch (e: Exception) {
+            return Resource.Error("There was an error.")
+        }
+        return Resource.Success(request)
+    }
 }

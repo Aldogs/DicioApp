@@ -5,16 +5,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.diciointerviewapp.data.remote.responses.Datos
+import com.example.diciointerviewapp.data.remote.responses.User
 import com.example.diciointerviewapp.domain.use_cases.ValidateEmail
 import com.example.diciointerviewapp.domain.use_cases.ValidateFechaNac
 import com.example.diciointerviewapp.domain.use_cases.ValidateInt
 import com.example.diciointerviewapp.domain.use_cases.ValidateNotEmpty
 import com.example.diciointerviewapp.domain.use_cases.ValidateString
+import com.example.diciointerviewapp.repository.UserRepository
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RegisterUserViewModel(
+class RegisterUserViewModel (//@Inject constructor(
+   // private val repository: UserRepository,
     private val validateNombre : ValidateString = ValidateString(),
     private val validateApellidoPaterno : ValidateString = ValidateString(),
     private val validateApellidoMaterno : ValidateString = ValidateString(),
@@ -26,7 +31,7 @@ class RegisterUserViewModel(
     private val validateDelegacion : ValidateString = ValidateString(),
     private val validateEstado : ValidateString = ValidateString(),
     private val validateCP : ValidateInt = ValidateInt(),
-    ) : ViewModel() {
+) :  ViewModel() {
 
     var state by mutableStateOf(RegisterUserState())
 
@@ -119,7 +124,8 @@ class RegisterUserViewModel(
             return
         }
         viewModelScope.launch {
-            validationEventChannel.send(ValidationEvent.Success)
+            val datos = Datos(state.calle, state.colonia, state.cp, state.delegacion, state.estado, "", state.numero)
+         //   repository.addNewUser(User(state.nombre, state.apellidoPaterno, state.apellidoMaterno,30, state.email, state.fechaNac, datos))
         }
     }
 
