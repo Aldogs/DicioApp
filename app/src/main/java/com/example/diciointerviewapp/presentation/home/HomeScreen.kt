@@ -48,7 +48,7 @@ fun HomeScreen(
                     navController.navigate("register_user_screen")
                 }
             ) {
-                Text(text = "Registrar usuario")
+                androidx.compose.material3.Text(text = "Registrar usuario")
             }
             Spacer(modifier = Modifier.height(20.dp))
             ElevatedButton(
@@ -56,7 +56,7 @@ fun HomeScreen(
                     navController.navigate("user_list_screen")
                 }
             ) {
-                Text(text = "Ver usuarios")
+                androidx.compose.material3.Text(text = "Ver usuarios")
             }
         }
     }

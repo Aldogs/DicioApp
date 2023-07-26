@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.diciointerviewapp.presentation.camera.MainScreenCamera
 import com.example.diciointerviewapp.presentation.home.HomeScreen
 import com.example.diciointerviewapp.presentation.registerUser.RegisterUserScreen
 import com.example.diciointerviewapp.ui.theme.DicioInterviewAppTheme
@@ -37,6 +38,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("register_user_screen") {
                             RegisterUserScreen(navController = navController)
+                        }
+                        composable("camera_screen") {
+                            MainScreenCamera(navController = navController)
                         }
                     }
                 }

@@ -16,7 +16,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -321,13 +323,24 @@ fun RegisterUserScreen(
         }
         Spacer(modifier = Modifier.height(16.dp))
 
+        Button(
+            onClick = {
+                navController.navigate("camera_screen")
+            }
+        ) {
+            androidx.compose.material3.Icon(imageVector = Icons.Default.Camera, contentDescription = "Camera")
+            androidx.compose.material3.Text(text = "Tomar selfie")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         ElevatedButton(
             onClick = {
                 viewModel.onEvent(RegisterUserEvent.Submit)
             },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
-            Text(text = "Crear usuario")
+            androidx.compose.material3.Text(text = "Crear usuario")
         }
     }
 }
